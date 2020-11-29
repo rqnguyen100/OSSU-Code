@@ -18,3 +18,24 @@ If you want to view the curriculum that I will be following the link is here: ht
 
 #### Core-CS
 * How to Code: Simple Data
+
+### Courses left
+
+#### Core-CS
+* Math Elective
+* Core Math
+* CS Tools
+* Core Systems
+* Core Theory
+* Core Security
+* Core Applications
+
+#### Advanced CS
+Choose one 
+* Advanced Programming
+* Advanced Systems
+* Advanced Theory
+* Advanced Applications
+
+#### Final Project
+*TBA
