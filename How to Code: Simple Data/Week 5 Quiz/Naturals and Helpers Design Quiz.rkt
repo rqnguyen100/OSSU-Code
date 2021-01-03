@@ -1,5 +1,14 @@
-(require 2htdp/image)
+;; Rubric:
+;; Commit Ready: (G/F/P)
+;;  - Good
+;; Design Completeness: (G/F/P)
+;;  - Good
+;; Internal Quality: (E/G/F/P)
+;;  - Excellent
+;; Problem Satisfied: (G/F/P)
+;;  - Good
 
+(require 2htdp/image)
 ;; ======================================================================
 ;; Constants
 (define COOKIES [insert image of cookie]) ;images don't copy on GitHub
@@ -165,8 +174,6 @@
                                    (cons "solid" (cons "bubble" empty)))))
 
 ;(define (sink lob) empty) ; stub
-
-;;<Template from ListOfBlob>
 
 (define (sink lob)
   (sort-lob lob))
