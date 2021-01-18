@@ -17,12 +17,15 @@ If you want to view the curriculum that I will be following the link is here: ht
   * [Python For Everybody](https://github.com/rqnguyen100/OSSU-Code/tree/main/Python%20for%20Everybody)
 * Introduction to Computer Science
   * [Introduction to Computer Science and Programming Using Python](https://github.com/rqnguyen100/OSSU-Code/tree/main/Introduction%20to%20Computer%20Science%20and%20Programming%20using%20Python)
+#### Core-CS
+* Core Programming
+  * [How to Code: Simple Data](https://github.com/rqnguyen100/OSSU-Code/tree/main/How%20to%20Code:%20Simple%20Data)
 
 ### Course I'm currently on
 
 #### Core-CS
 * Core Programming
-  * [How to Code: Simple Data](https://github.com/rqnguyen100/OSSU-Code/tree/main/How%20to%20Code:%20Simple%20Data)
+  * [How to Code: Complex Data]
 
 ### Courses left
 
