@@ -2,11 +2,13 @@
 ;; Commit Ready: (G/F/P)
 ;;  - Good
 ;; Design Completeness: (G/F/P)
-;;  - Fair
+;;  - Good
 ;; Internal Quality: (E/G/F/P)
 ;;  - Excellent
 ;; Problem Satisfied: (G/F/P)
-;;  - Good
+;;  - Fair
+;;    - missiles don't hit invaders when pressing space consecutively
+;;    - image of invader bouncing off borders is off
 
 (require 2htdp/universe)
 (require 2htdp/image)
