@@ -11,7 +11,6 @@ My Linkedin is https://www.linkedin.com/in/roger-q-nguyen/.
 If you want to view the curriculum that I will be following the link is here: https://github.com/ossu/computer-science.
 
 ### Courses I've done so far
-
 #### Intro-CS
 * Introduction to Programming
   * [Python For Everybody](https://github.com/rqnguyen100/OSSU-Code/tree/main/Python%20for%20Everybody)
@@ -22,13 +21,11 @@ If you want to view the curriculum that I will be following the link is here: ht
   * [How to Code: Simple Data](https://github.com/rqnguyen100/OSSU-Code/tree/main/How%20to%20Code:%20Simple%20Data)
 
 ### Course I'm currently on
-
 #### Core-CS
 * Core Programming
-  * [How to Code: Complex Data]
+  * How to Code: Complex Data
 
 ### Courses left
-
 #### Core-CS
 * Core Programming
 * Math Elective
