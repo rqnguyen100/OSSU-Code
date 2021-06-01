@@ -46,63 +46,54 @@
 ;; ----------------------
 ;; Natural Image -> Image
 ;; produce an n-wide pyramid of the given image
-(check-expect (pyramid 0 COOKIES) empty-image)          ;0 level pyramid
-(check-expect (pyramid 1 COOKIES) COOKIES)              ;1 level pyramid
-(check-expect (pyramid 3 COOKIES)                       ;3 level pyramid
-              (above/align "center"
-                     COOKIES
+(check-expect (pyramid 0 COOKIES) empty-image)
+(check-expect (pyramid 1 COOKIES) COOKIES)
+(check-expect (pyramid 3 COOKIES)
+              (above COOKIES
                      (beside COOKIES COOKIES)
                      (beside COOKIES COOKIES COOKIES)))
 
 ;(define (pyramid n i) empty-image) ; stub
 
-;;<Template from Natural>
+;<Template from Natural>
 
-(define (pyramid n img)
+(define (pyramid n i)
   (cond [(zero? n) empty-image]
         [else
-         (stack (pyramid (sub1 n) img)
-                n)]))
+         (stack (pyramid (sub1 n) i)
+                (layer n i))]))
 
-;; ----------------------
-;; Image Natural -> Image
-;; creates stack of an n-wide pyramid of the given image
-(check-expect (stack COOKIES 0) empty-image)          ;0 level pyramid
-(check-expect (stack COOKIES 1) COOKIES)              ;1 level pyramid
-(check-expect (stack COOKIES 3)                       ;3 level pyramid
-              (above/align "center"
-                     COOKIES
-                     (beside COOKIES COOKIES)
-                     (beside COOKIES COOKIES COOKIES)))
+;; ---------------------
+;; Natural Image -> Image
+;; produce a layer of image with n elements
+(check-expect (layer 0 COOKIES) empty-image)
+(check-expect (layer 1 COOKIES) COOKIES)
+(check-expect (layer 2 COOKIES) (beside COOKIES COOKIES))
+(check-expect (layer 3 COOKIES) (beside COOKIES COOKIES COOKIES))
 
-;(define (stack img n) empty-image) ;stub
+;(define (layer n i) empty-image)
 
-;;<Template from Natural>
+;<Template from Natural>
 
-(define (stack img n)
-  (cond [(zero? n) empty-image]    
+(define (layer n i)
+  (cond [(zero? n) empty-image]
         [else
-         (above/align "center"
-                      (stack (level-img img (sub1 n)) (sub1 n))
-                      (level-img img n))]))
+         (beside COOKIES                
+                 (layer (sub1 n) i))]))
 
-;; ----------------------
-;; Image Natural -> Image
-;; creates pyramid level of an n-wide pyramid of the given image
-(check-expect (level-img COOKIES 0) empty-image)      ;0 element level
-(check-expect (level-img COOKIES 1) COOKIES)          ;1 element level
-(check-expect (level-img COOKIES 3)                   ;3 element level
-              (beside COOKIES COOKIES COOKIES))
+;; Image Image -> Image
+;; stacks images aligned on center
+(check-expect (stack empty-image COOKIES) (above empty-image
+                                                 COOKIES))
+(check-expect (stack COOKIES (beside COOKIES COOKIES))
+              (above COOKIES
+                     (beside COOKIES COOKIES)))
 
-;(define (level-img img n) empty-image) ;stub
+;(define (stack i1 i2) empty-image) ;stub
 
-;;<Template from Natural>
-
-(define (level-img img n)
-  (cond [(zero? n) empty-image]  
-        [else
-         (beside COOKIES
-                 (level-img img (sub1 n)))]))
+(define (stack i1 i2)
+  (above i1
+         i2))
 
 ; Problem 2:
 ; Consider a test tube filled with solid blobs and bubbles.  Over time the
