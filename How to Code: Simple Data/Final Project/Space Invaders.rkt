@@ -7,8 +7,8 @@
 ;;  - Excellent
 ;; Problem Satisfied: (G/F/P)
 ;;  - Fair
-;;    - missiles don't hit invaders when pressing space consecutively
-;;    - image of invader bouncing off borders is off
+;;    - missiles don't hit invaders when holding space bar
+;;    - missiles work fine when pressing space bar sparingly
 
 (require 2htdp/universe)
 (require 2htdp/image)
@@ -23,10 +23,10 @@
 
 (define INVADER-X-SPEED 1.5)  ;speeds (not velocities) in pixels per tick
 (define INVADER-Y-SPEED 1.5)
-(define TANK-SPEED 2)
+(define TANK-SPEED 4)
 (define MISSILE-SPEED 10)
 
-(define HIT-RANGE 15)
+(define HIT-RANGE 20)
 
 (define INVADE-RATE 100)
 
@@ -198,24 +198,23 @@
                                    
                          empty T0))
 (check-random (timer-game (make-game (list (make-invader (- WIDTH 1) 60 INVADER-X-SPEED)) empty T0))                                     ;invader stopping at right border
-              (make-game (list (make-invader WIDTH (+ 60 INVADER-Y-SPEED) INVADER-X-SPEED))
+              (make-game (list (make-invader (- WIDTH (/ (image-width INVADER) 2)) (+ 60 INVADER-Y-SPEED) INVADER-X-SPEED))
                                    
                          empty T0))
-(check-random (timer-game (make-game (list (make-invader WIDTH 60 INVADER-X-SPEED)) empty T0))                                           ;invader bouncing off right border
-              (make-game (list (make-invader (+ WIDTH (- INVADER-X-SPEED)) (+ 60 INVADER-Y-SPEED) (- INVADER-X-SPEED)))
+(check-random (timer-game (make-game (list (make-invader (- WIDTH (/ (image-width INVADER) 2)) 60 INVADER-X-SPEED)) empty T0))           ;invader bouncing off right border
+              (make-game (list (make-invader (- (- WIDTH (/ (image-width INVADER) 2)) INVADER-X-SPEED) (+ 60 INVADER-Y-SPEED) (- INVADER-X-SPEED)))
                                    
                          empty T0))
 (check-random (timer-game (make-game (list (make-invader 80 60 (- INVADER-X-SPEED))) empty T0))                                          ;invader moving to the left
               (make-game (list (make-invader (+ 80 (- INVADER-X-SPEED)) (+ 60 INVADER-Y-SPEED) (- INVADER-X-SPEED)))
                                   
                          empty T0))
-(check-random (timer-game (make-game (list (make-invader (+ 0 1) 60 (- INVADER-X-SPEED))) empty T0))                                     ;invader stopping at left border
-              (make-game (list (make-invader 0 (+ 60 INVADER-Y-SPEED) (- INVADER-X-SPEED)))
+(check-random (timer-game (make-game (list (make-invader (+ (+ 0 (/ (image-width INVADER) 2)) 1) 60 (- INVADER-X-SPEED))) empty T0))     ;invader stopping at left border
+              (make-game (list (make-invader (+ 0 (/ (image-width INVADER) 2)) (+ 60 INVADER-Y-SPEED) (- INVADER-X-SPEED)))
                                    
                          empty T0))
-(check-random (timer-game (make-game (list (make-invader 0 60 (- INVADER-X-SPEED))) empty T0))                                           ;invader bouncing off left border
-              (make-game (list (make-invader (+ 0 INVADER-X-SPEED) (+ 60 INVADER-Y-SPEED) INVADER-X-SPEED))
-                                   
+(check-random (timer-game (make-game (list (make-invader (+ 0 (/ (image-width INVADER) 2)) 60 (- INVADER-X-SPEED))) empty T0))            ;invader bouncing off left border
+              (make-game (list (make-invader (+ (+ 0 (/ (image-width INVADER) 2)) INVADER-X-SPEED) (+ 60 INVADER-Y-SPEED) INVADER-X-SPEED))        
                          empty T0))
 
 (check-random (timer-game (make-game (list (make-invader 150 250 INVADER-X-SPEED))                                                       ;invader gets hit
@@ -258,7 +257,8 @@
 (define (destroyed? loi lom)
   (cond [(empty? loi) empty]
         [(empty? lom) loi]
-        [(and (<= (abs (- (invader-x (first loi)) (missile-x (first lom)))) 15) (<= (abs (- (invader-y (first loi)) (missile-y (first lom)))) 16)) (append empty (destroyed? (rest loi) lom))]
+        [(and (<= (abs (- (invader-x (first loi)) (missile-x (first lom)))) HIT-RANGE) (<= (abs (- (invader-y (first loi)) (missile-y (first lom)))) HIT-RANGE))
+         (append empty (destroyed? (rest loi) lom))]
         [else
          (append (list (first loi))
                  (destroyed? (rest loi) lom))]))
@@ -279,19 +279,19 @@
               (list (make-invader (+ 80 INVADER-X-SPEED) (+ 60 INVADER-Y-SPEED) INVADER-X-SPEED)
                     ))
 (check-random (update-invaders (list (make-invader (- WIDTH 1) 60 INVADER-X-SPEED)))                                     ;invader stopping at right border
-              (list (make-invader WIDTH (+ 60 INVADER-Y-SPEED) INVADER-X-SPEED)
+              (list (make-invader (- WIDTH (/ (image-width INVADER) 2)) (+ 60 INVADER-Y-SPEED) INVADER-X-SPEED)
                     ))
-(check-random (update-invaders (list (make-invader WIDTH 60 INVADER-X-SPEED)))                                           ;invader bouncing off right border
-              (list (make-invader (+ WIDTH (- INVADER-X-SPEED)) (+ 60 INVADER-Y-SPEED) (- INVADER-X-SPEED))
+(check-random (update-invaders (list (make-invader (- WIDTH 10) 60 INVADER-X-SPEED)))                                    ;invader bouncing off right border
+              (list (make-invader (+ (- WIDTH (/ (image-width INVADER) 2)) (- INVADER-X-SPEED)) (+ 60 INVADER-Y-SPEED) (- INVADER-X-SPEED))
                     ))
 (check-random (update-invaders (list (make-invader 80 60 (- INVADER-X-SPEED))))                                          ;invader moving to the left
               (list (make-invader (+ 80 (- INVADER-X-SPEED)) (+ 60 INVADER-Y-SPEED) (- INVADER-X-SPEED))
                     ))
-(check-random (update-invaders (list (make-invader (+ 0 1) 60 (- INVADER-X-SPEED))))                                     ;invader stopping at left border
-              (list (make-invader 0 (+ 60 INVADER-Y-SPEED) (- INVADER-X-SPEED))
+(check-random (update-invaders (list (make-invader (+ 10 1) 60 (- INVADER-X-SPEED))))                                     ;invader stopping at left border
+              (list (make-invader (+ 0 (/ (image-width INVADER) 2)) (+ 60 INVADER-Y-SPEED) (- INVADER-X-SPEED))
                     ))
-(check-random (update-invaders (list (make-invader 0 60 INVADER-X-SPEED)))                                               ;invader bouncing off left border
-              (list (make-invader (+ 0 INVADER-X-SPEED) (+ 60 INVADER-Y-SPEED) INVADER-X-SPEED)
+(check-random (update-invaders (list (make-invader 10 60 INVADER-X-SPEED)))                                               ;invader bouncing off left border
+              (list (make-invader (+ (+ 0 (/ (image-width INVADER) 2)) INVADER-X-SPEED) (+ 60 INVADER-Y-SPEED) INVADER-X-SPEED)
                     ))
 
 ;(define (update-invaders loi) empty) ;stub
@@ -325,12 +325,14 @@
 ;; ------------------
 ;; Natural[0,WIDTH] Number -> Natural
 ;; adds invader speed in the x direction to invader x position
-(check-expect (new-invader-x 0 INVADER-X-SPEED) (+ 0 INVADER-X-SPEED))             ;positive velocity
-(check-expect (new-invader-x 299 INVADER-X-SPEED) WIDTH)                           ;stops at right border
-(check-expect (new-invader-x WIDTH INVADER-X-SPEED) (+ WIDTH (- INVADER-X-SPEED))) ;bounces off right border
+(check-expect (new-invader-x 10 INVADER-X-SPEED) (+ 10 INVADER-X-SPEED))           ;positive velocity
 (check-expect (new-invader-x 50 (- INVADER-X-SPEED)) (+ 50 (- INVADER-X-SPEED)))   ;negative velocity
-(check-expect (new-invader-x 1 (- INVADER-X-SPEED)) 0)                             ;stops at left border
-(check-expect (new-invader-x 0 (- INVADER-X-SPEED)) (+ 0 INVADER-X-SPEED))         ;bounces off left border
+
+(check-expect (new-invader-x 289 INVADER-X-SPEED) (- WIDTH (/ (image-width INVADER) 2)))  ;stops at right border
+(check-expect (new-invader-x 9 (- INVADER-X-SPEED)) (+ 0 (/ (image-width INVADER) 2)))    ;stops at left border
+
+(check-expect (new-invader-x (- WIDTH (/ (image-width INVADER) 2)) INVADER-X-SPEED) (+ (- WIDTH (/ (image-width INVADER) 2)) (- INVADER-X-SPEED))) ;bounces off right border
+(check-expect (new-invader-x (+ 0 (/ (image-width INVADER) 2)) (- INVADER-X-SPEED)) (+ (+ 0 (/ (image-width INVADER) 2)) INVADER-X-SPEED))         ;bounces off left border
 
 ;(define (new-invader-x nat num) nat) ;stub
 
@@ -340,17 +342,17 @@
    (... num)))
 
 (define (new-invader-x nat num)
-  (cond [(and (< 300 (+ nat num)) (not (= 300 nat))) 300]
-        [(and (> 0 (+ nat num)) (not (= 0 nat))) 0]
+  (cond [(and (< (- WIDTH (/ (image-width INVADER) 2)) (+ nat num)) (not (= (- WIDTH (/ (image-width INVADER) 2)) nat))) (- WIDTH (/ (image-width INVADER) 2))]
+        [(and (> (+ 0 (/ (image-width INVADER) 2)) (+ nat num)) (not (= (+ 0 (/ (image-width INVADER) 2)) nat))) (+ 0 (/ (image-width INVADER) 2))]
         [else
          (+ nat (change-velocity? nat num))]))
 
 ;; ---------------
 ;; Natural[0,WIDTH] Number -> Number
 ;; returns a negative version of number if natural number is either 0 for 300 and is going to go past border
-(check-expect (change-velocity? 0 (- INVADER-X-SPEED)) INVADER-X-SPEED)     ;left border
-(check-expect (change-velocity? 70 INVADER-X-SPEED) INVADER-X-SPEED)        ;middle
-(check-expect (change-velocity? WIDTH INVADER-X-SPEED) (- INVADER-X-SPEED)) ;left border
+(check-expect (change-velocity? (+ 0 (/ (image-width INVADER) 2)) (- INVADER-X-SPEED)) INVADER-X-SPEED)     ;left border
+(check-expect (change-velocity? 70 INVADER-X-SPEED) INVADER-X-SPEED)                                        ;middle
+(check-expect (change-velocity? (- WIDTH (/ (image-width INVADER) 2)) INVADER-X-SPEED) (- INVADER-X-SPEED)) ;left border
  
 ;(define (change-velocity? nat num) num) ;stub
 
@@ -360,8 +362,8 @@
    (... num)))
 
 (define (change-velocity? nat num)
-  (cond [(and (= 300 nat) (< 300 (+ nat num))) (- num)]
-        [(and (= 0 nat) (> 0 (+ nat num))) (- num)]
+  (cond [(and (= (- WIDTH (/ (image-width INVADER) 2)) nat) (< (- WIDTH (/ (image-width INVADER) 2)) (+ nat num))) (- num)]
+        [(and (= (+ 0 (/ (image-width INVADER) 2)) nat) (> (+ 0 (/ (image-width INVADER) 2)) (+ nat num))) (- num)]
         [else
          num]))
 
@@ -370,7 +372,7 @@
 ;; adds invader speed in the y direction to invader y position
 (check-expect (new-invader-y 0) (+ 0 INVADER-Y-SPEED))     ;top border
 (check-expect (new-invader-y 100) (+ 100 INVADER-Y-SPEED)) ;middle
-(check-expect (new-invader-y HEIGHT) HEIGHT)               ;bottom border
+(check-expect (new-invader-y (- HEIGHT (/ (image-height INVADER) 2))) (- HEIGHT (/ (image-height INVADER) 2))) ;bottom border
 
 ;(define (new-invader-y n) n) ;stub
 
@@ -379,7 +381,7 @@
   (... n))
 
 (define (new-invader-y n)
-  (cond [(< HEIGHT (+ n INVADER-Y-SPEED)) HEIGHT]
+  (cond [(< (- HEIGHT (/ (image-height INVADER) 2)) (+ n INVADER-Y-SPEED)) (- HEIGHT (/ (image-height INVADER) 2))]
         [else
          (+ n INVADER-Y-SPEED)]))
 
@@ -632,7 +634,7 @@
 ;; stops game and displays game over once invader reaches bottom
 (check-expect (game-over (make-game empty empty T0)) false) ;no invader
 (check-expect (game-over (make-game (list (make-invader 75 5 INVADER-X-SPEED)) empty T0)) false) ;invader not at bottom
-(check-expect (game-over (make-game (list (make-invader 0 HEIGHT INVADER-X-SPEED)) empty T0)) true)  ;invader at bottom
+(check-expect (game-over (make-game (list (make-invader 0 (- HEIGHT (/ (image-height INVADER) 2)) INVADER-X-SPEED)) empty T0)) true)  ;invader at bottom
 
 ;(define (game-over g) false) ;stub
 
@@ -640,6 +642,6 @@
 
 (define (game-over g)
   (cond [(empty? (game-invaders g)) false]
-        [(= (invader-y (first (game-invaders g))) HEIGHT) true]
+        [(= (invader-y (first (game-invaders g))) (- HEIGHT (/ (image-height INVADER) 2))) true]
         [else
          (game-over (make-game (rest (game-invaders g)) (game-missiles g) (game-tank g)))]))
