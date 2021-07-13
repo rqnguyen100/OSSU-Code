@@ -1,3 +1,15 @@
+;; Rubric:
+;; -------
+;; Commit Ready (G/F/P):
+;;  - Good
+;; Design Completeness (G/F/P):
+;;  - Good
+;; Internal Quality (E/G/F/P):
+;;  - Excellent
+;; Problem Satisfied (G/F/P):
+;;  - Good
+
+
 ;  PROBLEM 1:
 ;  
 ;  Assuming the use of at least one accumulator, design a function that consumes a list of strings,
