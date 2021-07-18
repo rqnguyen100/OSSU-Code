@@ -19,17 +19,17 @@ If you want to view the curriculum that I will be following the link is here: ht
 #### Core-CS
 * Core Programming
   * [How to Code: Simple Data](https://github.com/rqnguyen100/OSSU-Code/tree/main/How%20to%20Code:%20Simple%20Data)
+  * [How to Code: Complex Data](https://github.com/rqnguyen100/OSSU-Code/tree/main/How%20to%20Code:%20Complex%20Data)
 
 ### Course I'm currently on
 #### Core-CS
 * Core Programming
   * [How to Code: Complex Data](https://github.com/rqnguyen100/OSSU-Code/tree/main/How%20to%20Code:%20Complex%20Data)
 
+
 ### Courses left
 #### Core-CS
 * Core Programming
-* Math Elective
-* Core Math
 * CS Tools
 * Core Systems
 * Core Theory
