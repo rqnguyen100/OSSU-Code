@@ -24,7 +24,7 @@ If you want to view the curriculum that I will be following the link is here: ht
 ### Course I'm currently on
 #### Core-CS
 * Core Programming
-  * [How to Code: Complex Data](https://github.com/rqnguyen100/OSSU-Code/tree/main/How%20to%20Code:%20Complex%20Data)
+  * [Programming Languages, Part A](https://github.com/rqnguyen100/OSSU-Code/tree/main/How%20to%20Code:%20Complex%20Data)
 
 
 ### Courses left
