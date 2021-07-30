@@ -55,7 +55,7 @@ fun get_nth (los: string list, n: int) =
 fun date_to_string (d: int*int*int) =
     (* Date -> String
        produce a string	of the form "Month Day, Year" with given date *)
-    let val months = ["January","Feburary","March","April","May","June","July","August","Sepetember","October","November","December"]
+    let val months = ["January","February","March","April","May","June","July","August","Sepetember","October","November","December"]
     in
 	      get_nth(months,#2 d)^" "^Int.toString(#3 d)^", "^Int.toString(#1 d)
     end
@@ -64,16 +64,20 @@ fun date_to_string (d: int*int*int) =
 fun number_before_reaching_sum (sum : int, loi : int list) =
     (* Natural (listof Natural) -> Natural
        produce a natural such that the first nth elements of the list add to less than the sum *)
-    if (sum - (hd (tl loi))) <= 0
+    if (sum - (hd loi)) <= 0
     then 0
     else 1 + number_before_reaching_sum(sum-(hd loi), tl loi)
 				       
 fun what_month (day : int) =
     (* Natural[1,365] -> String
        produce what month that day is in as a String (ex. January) *)
-    let val month_first_day = [1,32,60,91,121,152,182,213,244,274,305,335]
+    let val month_first_day = [32,60,91,121,152,182,213,244,274,305,335,366]
+	fun find_month (day : int, month_days : int list) =
+	    if day < (hd month_days)
+	    then 1
+	    else 1 + find_month (day, (tl month_days))
     in
-	      1 + number_before_reaching_sum (day, month_first_day)
+	find_month(day, month_first_day)
     end
 	
 fun month_range (day1 : int, day2 : int) =
@@ -103,4 +107,3 @@ fun oldest (lod : (int*int*int) list) =
         	SOME (oldest_nonempty lod)
       end
 	     
-	    
