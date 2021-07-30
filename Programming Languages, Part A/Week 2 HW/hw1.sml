@@ -14,6 +14,7 @@ fun is_older (d1 : int*int*int, d2 : int*int*int) =
 	       else #2 d1 < #2 d2
     else #1 d1 < #1 d2
 
+
 fun number_in_month (lod : (int*int*int) list, m : int) =
     (* (listof Date) Month -> Natural
        produce number of dates in list that are in given month *)
@@ -22,13 +23,15 @@ fun number_in_month (lod : (int*int*int) list, m : int) =
     else if #2 (hd lod) = m
          then 1 + number_in_month (tl lod,m)
          else number_in_month (tl lod,m)
-			 
+		
+		
 fun number_in_months (lod : (int*int*int) list, lom : int list) =
     (* (listof Date) (listof Month) -> Natural
        produce number of dates in list that are in any of the list of months*)
     if null lom
     then 0
     else number_in_month(lod, hd lom) + number_in_months(lod, tl lom)
+
 
 fun dates_in_month (lod: (int*int*int) list, m : int) =
     (* (listof Date) Month -> (listof Date)
@@ -39,13 +42,15 @@ fun dates_in_month (lod: (int*int*int) list, m : int) =
          then (hd lod)::dates_in_month(tl lod, m)
          else dates_in_month(tl lod, m)
 
+
 fun dates_in_months (lod: (int*int*int) list, lom: int list) =
     (* (listof Date) (listof Month) -> (listof Date)
         produce (listof Date) composed of dates that are in (listof Month) *)
     if null lom
     then []
     else dates_in_month(lod, hd lom) @ dates_in_months(lod, tl lom)
-						     
+		
+		
 fun get_nth (los: string list, n: int) =
     (* (listof String) Natural -> String
        produce the nth element of the list
@@ -53,6 +58,7 @@ fun get_nth (los: string list, n: int) =
     if n = 1
     then hd los
     else get_nth(tl los, n-1)
+		
 		
 fun date_to_string (d: int*int*int) =
     (* Date -> String
@@ -69,7 +75,8 @@ fun number_before_reaching_sum (sum : int, loi : int list) =
     if (sum - (hd loi)) <= 0
     then 0
     else 1 + number_before_reaching_sum(sum-(hd loi), tl loi)
-				       
+		
+		
 fun what_month (day : int) =
     (* Natural[1,365] -> String
        produce what month that day is in as a String (ex. January) *)
@@ -82,6 +89,7 @@ fun what_month (day : int) =
 	find_month(day, month_first_day)
     end
 	
+	
 fun month_range (day1 : int, day2 : int) =
     (* Natural[1,365] Natural [1,365] -> (listof Month)
        produce a (listof Month) where first element is month of day1 and 
@@ -89,7 +97,8 @@ fun month_range (day1 : int, day2 : int) =
     if day1 > day2
     then []
     else what_month(day1)::month_range(day1+1,day2)
-				      
+		
+		
 fun oldest (lod : (int*int*int) list) =
     (* (listof Date) -> Date Option
        produce SOME d if the date d is the oldest date in the list *)
