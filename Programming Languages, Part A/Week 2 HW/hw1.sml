@@ -1,3 +1,5 @@
+(* Score based on Auto-grader: 100/100 *)
+
 (* Date is int*int*int
    interp. a date with a year, Month, and a day *)
 
