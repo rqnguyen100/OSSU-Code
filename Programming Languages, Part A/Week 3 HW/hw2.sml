@@ -135,7 +135,7 @@ fun all_same_color (loc : card list) =
     case loc of
 	[] => true
       | _::[] => true
-      | head::(neck::rest) => (card_color(head) = card_color(neck) andalso all_same_color(neck::rest))
+      | first::(next::rest) => (card_color(first) = card_color(next) andalso all_same_color(next::rest))
        
        
 fun sum_cards (loc : card list) =
