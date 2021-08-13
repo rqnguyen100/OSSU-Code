@@ -1,3 +1,5 @@
+(* Score: 95/100 *)
+
 (* Provided Code *)
 
 exception NoAnswer
