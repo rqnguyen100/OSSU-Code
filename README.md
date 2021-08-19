@@ -25,7 +25,7 @@ If you want to view the curriculum that I will be following the link is here: ht
 ### Course I'm currently on
 #### Core-CS
 * Core Programming
-  * [Programming Languages, Part B]
+  * [Programming Languages, Part B](https://github.com/rqnguyen100/OSSU-Code/tree/main/Programming%20Languages,%20Part%20B)
 
 
 ### Courses left
