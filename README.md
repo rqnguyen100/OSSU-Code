@@ -2,7 +2,7 @@
 
 <img src="https://camo.githubusercontent.com/c9ac22ae1c792937eb759c5dac63ed3159488ede5d60faac81acfb3303c57f02/687474703a2f2f692e696d6775722e636f6d2f6b5959435874432e706e67" width="450" height="250">
 
-Hello my name is Roger Nguyen and this repository is where I store all the code I've made while I complete the OSSU Curriculum. I plan to stop after I finish Core Programming.
+Hello my name is Roger Nguyen and this repository is where I store all the code I've made while I was doing the OSSU Curriculum. I decided to stop after Programming Languages, Part A.
 
 My Linkedin is https://www.linkedin.com/in/roger-q-nguyen/.
 
@@ -21,13 +21,3 @@ If you want to view the curriculum that I will be following the link is here: ht
   * [How to Code: Simple Data](https://github.com/rqnguyen100/OSSU-Code/tree/main/How%20to%20Code:%20Simple%20Data)
   * [How to Code: Complex Data](https://github.com/rqnguyen100/OSSU-Code/tree/main/How%20to%20Code:%20Complex%20Data)
   * [Programming Languages, Part A](https://github.com/rqnguyen100/OSSU-Code/tree/main/Programming%20Languages,%20Part%20A)
-
-### Course I'm currently on
-#### Core-CS
-* Core Programming
-  * [Programming Languages, Part B](https://github.com/rqnguyen100/OSSU-Code/tree/main/Programming%20Languages,%20Part%20B)
-
-
-### Courses left
-#### Core-CS
-* Core Programming
